@@ -32,6 +32,11 @@ def tell_joke():
     joke = random.choice(jokes)
     fade_out(new_text=joke)
 
+def copy_joke():
+    joke = label.cget("text")
+    root.clipboard_clear()
+    root.clipboard_append(joke)
+
 root = tk.Tk()
 root.title("Random Joke Generator")
 root.geometry("400x200")
@@ -47,5 +52,8 @@ label.pack(pady=20)
 
 button = tk.Button(root, text="Tell me a joke", command=tell_joke)
 button.pack()
+
+copy_button = tk.Button(root, text="Copy joke", command=copy_joke)
+copy_button.pack()
 
 root.mainloop()
