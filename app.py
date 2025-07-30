@@ -39,21 +39,49 @@ def copy_joke():
 
 root = tk.Tk()
 root.title("Random Joke Generator")
-root.geometry("400x200")
+root.geometry("450x250")
+root.configure(bg="#2c3e50")
+root.resizable(False, False)
 
 label = tk.Label(
     root,
     text="Click the button for a joke!",
-    wraplength=380,
+    wraplength=420,
     justify="center",
-    font=("Arial", 12),
+    font=("Helvetica", 14, "bold"),
+    bg="#2c3e50",
+    fg="white",
 )
 label.pack(pady=20)
 
-button = tk.Button(root, text="Tell me a joke", command=tell_joke)
-button.pack()
+button = tk.Button(
+    root,
+    text="Tell me a joke",
+    command=tell_joke,
+    font=("Helvetica", 12, "bold"),
+    bg="#3498db",
+    fg="white",
+    activebackground="#2980b9",
+    activeforeground="white",
+    bd=0,
+    padx=10,
+    pady=5,
+)
+button.pack(pady=(0, 10))
 
-copy_button = tk.Button(root, text="Copy joke", command=copy_joke)
+copy_button = tk.Button(
+    root,
+    text="Copy joke",
+    command=copy_joke,
+    font=("Helvetica", 12),
+    bg="#e67e22",
+    fg="white",
+    activebackground="#d35400",
+    activeforeground="white",
+    bd=0,
+    padx=10,
+    pady=5,
+)
 copy_button.pack()
 
 root.mainloop()
