@@ -1,12 +1,6 @@
 import tkinter as tk
-import random
+import requests
 
-jokes = [
-    "Why don't scientists trust atoms? Because they make up everything!",
-    "I'm reading a book about anti-gravity. It's impossible to put down!",
-    "What do you call fake spaghetti? An impasta!",
-    "Why did the scarecrow win an award? He was outstanding in his field!"
-]
 
 fade_steps = 20
 
@@ -28,8 +22,23 @@ def fade_out(step=0, new_text=""):
             label.config(text=new_text)
             fade_in()
 
+def fetch_joke():
+    """Retrieve a random joke from icanhazdadjoke."""
+    try:
+        resp = requests.get(
+            "https://icanhazdadjoke.com/",
+            headers={"Accept": "application/json"},
+            timeout=5,
+        )
+        if resp.status_code == 200:
+            data = resp.json()
+            return data.get("joke")
+    except Exception:
+        pass
+    return "Couldn't fetch a joke right now. Please try again."
+
 def tell_joke():
-    joke = random.choice(jokes)
+    joke = fetch_joke()
     fade_out(new_text=joke)
 
 def copy_joke():
